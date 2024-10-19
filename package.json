@@ -2,11 +2,11 @@
   "name": "alias",
   "version": "1.0.0",
   "description": "Single-team Alias game for web",
-  "main": "backend/server.ts",
+  "main": "src/backend/server.ts",
   "scripts": {
-    "start": "nodemon backend/server.ts",
+    "start": "nodemon src/backend/server.ts",
     "start:frontend": "webpack serve --config webpack.config.js",
-    "start:backend": "nodemon backend/server.ts"
+    "start:backend": "nodemon src/backend/server.ts"
   },
   "dependencies": {
     "express": "^4.17.1",
