@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "es2015"],
-    "jsx": "react",
+    "lib": ["es2015"],
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "./dist",
@@ -10,9 +9,8 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "types": ["@types/react", "@types/react-dom"]
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["frontend/src"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }
