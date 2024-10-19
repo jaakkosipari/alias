@@ -19,3 +19,29 @@ Game logic:
   - Player 2 is shown a text input with ok button, and instructions to enter the word once guessed
   - Once Player 2 submits the guess, it's checked. If it's correct, the team gets a point.
 - Displays score & game ends
+
+## New Project Structure
+
+The project has been restructured to separate the backend and frontend into their own directories with their own `package.json` files.
+
+### Backend
+
+The backend code is located in the `backend` directory. To start the backend server, navigate to the `backend` directory and run:
+
+```bash
+npm install
+npm start
+```
+
+The backend server will be running on `http://localhost:3001`.
+
+### Frontend
+
+The frontend code is located in the `frontend` directory. To start the frontend development server, navigate to the `frontend` directory and run:
+
+```bash
+npm install
+npm start
+```
+
+The frontend development server will be running on `http://localhost:9000`.
