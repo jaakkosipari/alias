@@ -19,4 +19,3 @@ Game logic:
   - Player 2 is shown a text input with ok button, and instructions to enter the word once guessed
   - Once Player 2 submits the guess, it's checked. If it's correct, the team gets a point.
 - Displays score & game ends
-

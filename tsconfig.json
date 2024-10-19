@@ -6,13 +6,13 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "./dist",
-    "rootDir": "./src/frontend",
+    "rootDir": "./frontend/src",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "types": ["@types/react", "@types/react-dom"]
   },
-  "include": ["src/frontend"],
+  "include": ["frontend/src"],
   "exclude": ["node_modules"]
 }
