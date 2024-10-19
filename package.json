@@ -1,0 +1,25 @@
+{
+  "name": "alias",
+  "version": "1.0.0",
+  "description": "Single-team Alias game for web",
+  "main": "backend/server.ts",
+  "scripts": {
+    "start": "nodemon backend/server.ts",
+    "start:frontend": "webpack serve --config webpack.config.js",
+    "start:backend": "nodemon backend/server.ts"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.5",
+    "nodemon": "^2.0.7",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2",
+    "@types/express": "^4.17.11",
+    "@types/uuid": "^8.3.3",
+    "ts-node": "^10.0.0"
+  }
+}
