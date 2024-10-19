@@ -1,12 +1,11 @@
 {
   "name": "frontend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.tsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve --config frontend/webpack.config.js",
-    "build": "webpack --config frontend/webpack.config.js",
-    "serve": "webpack-dev-server --config frontend/webpack.config.js"
+    "start": "webpack serve --config webpack.config.js",
+    "build": "webpack --config webpack.config.js"
   },
   "keywords": [],
   "author": "",
