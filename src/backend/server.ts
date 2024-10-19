@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { getGame, createGame, joinGame, submitGuess } from './database';
 
@@ -7,14 +7,14 @@ const port = 3001;
 
 app.use(express.json());
 
-app.post('/start', (req, res) => {
+app.post('/start', (req: Request, res: Response) => {
   const gameId = uuidv4();
   const playerId = uuidv4();
   createGame(gameId, playerId);
   res.json({ gameId, playerId });
 });
 
-app.post('/join', (req, res) => {
+app.post('/join', (req: Request, res: Response) => {
   const { gameId } = req.body;
   const playerId = uuidv4();
   const success = joinGame(gameId, playerId);
@@ -25,7 +25,7 @@ app.post('/join', (req, res) => {
   }
 });
 
-app.post('/guess', (req, res) => {
+app.post('/guess', (req: Request, res: Response) => {
   const { gameId, playerId, guess } = req.body;
   const result = submitGuess(gameId, playerId, guess);
   res.json(result);
