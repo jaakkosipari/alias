@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { getGame, createGame, joinGame, submitGuess } from './database';
-import wordlist from './wordlist.json';
+import { wordlist } from './wordlist';
 
 const app = express();
 const port = 3001;

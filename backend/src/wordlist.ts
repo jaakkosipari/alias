@@ -1,5 +1,5 @@
-{
-  "words": [
+export const wordlist = {
+  words: [
     "apple",
     "banana",
     "cherry",
@@ -25,4 +25,4 @@
     "yellow",
     "zucchini"
   ]
-}
+};
