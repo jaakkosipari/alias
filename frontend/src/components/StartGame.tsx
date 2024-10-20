@@ -7,19 +7,41 @@ interface StartGameProps {
 const StartGame: React.FC<StartGameProps> = ({ onStartGame }) => {
   const [gameId, setGameId] = useState<string>('');
   const [playerId, setPlayerId] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
-  const handleStartGame = () => {
-    const newGameId = Math.random().toString(36).substr(2, 9);
-    const newPlayerId = Math.random().toString(36).substr(2, 9);
-    setGameId(newGameId);
-    setPlayerId(newPlayerId);
-    onStartGame(newGameId, newPlayerId);
+  const handleStartGame = async () => {
+    try {
+      const response = await fetch('/start', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to start game');
+      }
+
+      const data = await response.json();
+      setGameId(data.gameId);
+      setPlayerId(data.playerId);
+      onStartGame(data.gameId, data.playerId);
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (
     <div>
       <h2>Start a New Game</h2>
       <button onClick={handleStartGame}>Start Game</button>
+      {gameId && playerId && (
+        <div>
+          <p>Game ID: {gameId}</p>
+          <p>Player ID: {playerId}</p>
+        </div>
+      )}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 };

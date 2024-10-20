@@ -7,11 +7,28 @@ interface JoinGameProps {
 const JoinGame: React.FC<JoinGameProps> = ({ onJoinGame }) => {
   const [gameId, setGameId] = useState<string>('');
   const [playerId, setPlayerId] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
-  const handleJoinGame = () => {
-    const newPlayerId = Math.random().toString(36).substr(2, 9);
-    setPlayerId(newPlayerId);
-    onJoinGame(gameId, newPlayerId);
+  const handleJoinGame = async () => {
+    try {
+      const response = await fetch('/join', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ gameId }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to join game');
+      }
+
+      const data = await response.json();
+      setPlayerId(data.playerId);
+      onJoinGame(data.gameId, data.playerId);
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (
@@ -24,6 +41,13 @@ const JoinGame: React.FC<JoinGameProps> = ({ onJoinGame }) => {
         onChange={(e) => setGameId(e.target.value)}
       />
       <button onClick={handleJoinGame}>Join Game</button>
+      {gameId && playerId && (
+        <div>
+          <p>Game ID: {gameId}</p>
+          <p>Player ID: {playerId}</p>
+        </div>
+      )}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 };
