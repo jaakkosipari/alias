@@ -12,12 +12,14 @@
   "description": "",
   "dependencies": {
     "express": "^4.21.1",
-    "uuid": "^10.0.0"
+    "uuid": "^10.0.0",
+    "cors": "^2.8.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.15",
     "ts-node": "^10.0.0",
     "@types/express": "^5.0.0",
-    "@types/uuid": "^10.0.0"
+    "@types/uuid": "^10.0.0",
+    "@types/cors": "^2.8.12"
   }
 }
