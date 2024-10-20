@@ -35,7 +35,7 @@ app.post('/guess', (req: Request, res: Response) => {
   res.json(result);
 });
 
-app.get('/api/game/:gameId/word', (req: Request, res: Response) => {
+app.get('/api/game/:gameId/word', (req: Request, res: Response): express.Response<any, Record<string, any>> | undefined => {
   console.log('Received request to fetch a word');
   const { gameId } = req.params;
   const game = getGame(gameId);
@@ -44,7 +44,7 @@ app.get('/api/game/:gameId/word', (req: Request, res: Response) => {
   }
   const randomWord = wordlist.words[Math.floor(Math.random() * wordlist.words.length)];
   game.words.push(randomWord);
-  res.json({ word: randomWord });
+  return res.json({ word: randomWord });
 });
 
 app.listen(port, () => {
