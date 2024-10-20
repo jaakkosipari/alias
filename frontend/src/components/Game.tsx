@@ -45,7 +45,7 @@ const Game: React.FC<GameProps> = ({ gameId, playerId, onScoreUpdate }) => {
   };
 
   return (
-    <div>
+    <div className="game-container">
       <h2>Game</h2>
       <p>Explain this word: {word}</p>
       <input
@@ -53,8 +53,9 @@ const Game: React.FC<GameProps> = ({ gameId, playerId, onScoreUpdate }) => {
         placeholder="Enter your guess"
         value={guess}
         onChange={(e) => setGuess(e.target.value)}
+        className="input"
       />
-      <button onClick={handleGuessSubmit}>Submit Guess</button>
+      <button onClick={handleGuessSubmit} className="button">Submit Guess</button>
     </div>
   );
 };
