@@ -33,15 +33,16 @@ const JoinGame: React.FC<JoinGameProps> = ({ onJoinGame }) => {
   };
 
   return (
-    <div>
+    <div className="join-container">
       <h2>Join an Existing Game</h2>
       <input
         type="text"
         placeholder="Enter Game ID"
         value={gameId}
         onChange={(e) => setGameId(e.target.value)}
+        className="input"
       />
-      <button onClick={handleJoinGame}>Join Game</button>
+      <button onClick={handleJoinGame} className="button">Join Game</button>
       {gameId && playerId && (
         <div>
           <p>Game ID: {gameId}</p>

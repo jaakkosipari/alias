@@ -3,6 +3,7 @@ import StartGame from './components/StartGame';
 import JoinGame from './components/JoinGame';
 import Game from './components/Game';
 import Score from './components/Score';
+import './styles.css';
 
 const App: React.FC = () => {
   const [gameId, setGameId] = useState<string | null>(null);
@@ -24,7 +25,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="main-container">
       {!gameId && !playerId && (
         <>
           <StartGame onStartGame={handleStartGame} />

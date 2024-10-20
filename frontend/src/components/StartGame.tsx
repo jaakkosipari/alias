@@ -33,9 +33,9 @@ const StartGame: React.FC<StartGameProps> = ({ onStartGame }) => {
   };
 
   return (
-    <div>
+    <div className="start-container">
       <h2>Start a New Game</h2>
-      <button onClick={handleStartGame}>Start Game</button>
+      <button onClick={handleStartGame} className="button">Start Game</button>
       {gameId && playerId && (
         <div>
           <p>Game ID: {gameId}</p>

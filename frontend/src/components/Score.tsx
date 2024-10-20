@@ -6,7 +6,7 @@ interface ScoreProps {
 
 const Score: React.FC<ScoreProps> = ({ score }) => {
   return (
-    <div>
+    <div className="score-container">
       <h2>Score</h2>
       <p>{score}</p>
     </div>
