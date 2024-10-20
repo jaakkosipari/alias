@@ -2,10 +2,12 @@ import express, { Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { getGame, createGame, joinGame, submitGuess } from './database';
 import { wordlist } from './wordlist';
+import cors from 'cors';
 
 const app = express();
 const port = 3001;
 
+app.use(cors());
 app.use(express.json());
 
 app.post('/start', (req: Request, res: Response) => {
