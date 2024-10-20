@@ -8,8 +8,11 @@ const StartGame: React.FC<StartGameProps> = ({ onStartGame }) => {
   const [gameId, setGameId] = useState<string>('');
   const [playerId, setPlayerId] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleStartGame = async () => {
+    setLoading(true);
+    setError('');
     try {
       console.log('Sending request to start a new game');
       const response = await fetch('http://localhost:3001/start', {
@@ -29,6 +32,8 @@ const StartGame: React.FC<StartGameProps> = ({ onStartGame }) => {
       onStartGame(data.gameId, data.playerId);
     } catch (error: any) {
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -36,13 +41,20 @@ const StartGame: React.FC<StartGameProps> = ({ onStartGame }) => {
     <div className="start-container">
       <h2>Start a New Game</h2>
       <button onClick={handleStartGame} className="button">Start Game</button>
-      {gameId && playerId && (
-        <div>
-          <p>Game ID: {gameId}</p>
-          <p>Player ID: {playerId}</p>
-        </div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          {gameId && playerId && (
+            <div>
+              <p>Game ID: {gameId}</p>
+              <p>Player ID: {playerId}</p>
+            </div>
+          )}
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+          {!error && <p>No errors</p>}
+        </>
       )}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 };
