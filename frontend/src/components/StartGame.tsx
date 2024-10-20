@@ -11,6 +11,7 @@ const StartGame: React.FC<StartGameProps> = ({ onStartGame }) => {
 
   const handleStartGame = async () => {
     try {
+      console.log('Sending request to start a new game');
       const response = await fetch('http://localhost:3001/start', {
         method: 'POST',
         headers: {

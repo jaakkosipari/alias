@@ -9,6 +9,7 @@ const port = 3001;
 app.use(express.json());
 
 app.post('/start', (req: Request, res: Response) => {
+  console.log('Received request to start a new game');
   const gameId = uuidv4();
   const playerId = uuidv4();
   createGame(gameId, playerId);
@@ -16,6 +17,7 @@ app.post('/start', (req: Request, res: Response) => {
 });
 
 app.post('/join', (req: Request, res: Response) => {
+  console.log('Received request to join a game');
   const { gameId } = req.body;
   const playerId = uuidv4();
   const success = joinGame(gameId, playerId);
@@ -27,12 +29,14 @@ app.post('/join', (req: Request, res: Response) => {
 });
 
 app.post('/guess', (req: Request, res: Response) => {
+  console.log('Received request to submit a guess');
   const { gameId, playerId, guess } = req.body;
   const result = submitGuess(gameId, playerId, guess);
   res.json(result);
 });
 
 app.get('/api/game/:gameId/word', (req: Request, res: Response) => {
+  console.log('Received request to fetch a word');
   const { gameId } = req.params;
   const game = getGame(gameId);
   if (!game) {
