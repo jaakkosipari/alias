@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import GuessWord from './GuessWord';
 
 interface JoinGameProps {
   onJoinGame: (gameId: string, playerId: string) => void;
@@ -9,6 +10,7 @@ const JoinGame: React.FC<JoinGameProps> = ({ onJoinGame }) => {
   const [playerId, setPlayerId] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [joined, setJoined] = useState<boolean>(false);
 
   const handleJoinGame = async () => {
     setLoading(true);
@@ -30,6 +32,7 @@ const JoinGame: React.FC<JoinGameProps> = ({ onJoinGame }) => {
       const data = await response.json();
       setPlayerId(data.playerId);
       onJoinGame(data.gameId, data.playerId);
+      setJoined(true);
     } catch (error: any) {
       setError(error.message);
     } finally {
@@ -52,14 +55,20 @@ const JoinGame: React.FC<JoinGameProps> = ({ onJoinGame }) => {
         <p>Loading...</p>
       ) : (
         <>
-          {gameId && playerId && (
-            <div>
-              <p>Game ID: {gameId}</p>
-              <p>Player ID: {playerId}</p>
-            </div>
+          {joined ? (
+            <GuessWord gameId={gameId} playerId={playerId} onScoreUpdate={() => {}} />
+          ) : (
+            <>
+              {gameId && playerId && (
+                <div>
+                  <p>Game ID: {gameId}</p>
+                  <p>Player ID: {playerId}</p>
+                </div>
+              )}
+              {error && <p style={{ color: 'red' }}>{error}</p>}
+              {!error && <p>No errors</p>}
+            </>
           )}
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-          {!error && <p>No errors</p>}
         </>
       )}
     </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DisplayWord from './DisplayWord';
 
 interface StartGameProps {
   onStartGame: (gameId: string, playerId: string) => void;
@@ -49,6 +50,7 @@ const StartGame: React.FC<StartGameProps> = ({ onStartGame }) => {
             <div>
               <p>Game ID: {gameId}</p>
               <p>Player ID: {playerId}</p>
+              <DisplayWord gameId={gameId} />
             </div>
           )}
           {error && <p style={{ color: 'red' }}>{error}</p>}
