@@ -8,8 +8,11 @@ const JoinGame: React.FC<JoinGameProps> = ({ onJoinGame }) => {
   const [gameId, setGameId] = useState<string>('');
   const [playerId, setPlayerId] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleJoinGame = async () => {
+    setLoading(true);
+    setError('');
     try {
       console.log(`Joining game with gameId: ${gameId}`);
       const response = await fetch('http://localhost:3001/join', {
@@ -29,6 +32,8 @@ const JoinGame: React.FC<JoinGameProps> = ({ onJoinGame }) => {
       onJoinGame(data.gameId, data.playerId);
     } catch (error: any) {
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -43,13 +48,20 @@ const JoinGame: React.FC<JoinGameProps> = ({ onJoinGame }) => {
         className="input"
       />
       <button onClick={handleJoinGame} className="button">Join Game</button>
-      {gameId && playerId && (
-        <div>
-          <p>Game ID: {gameId}</p>
-          <p>Player ID: {playerId}</p>
-        </div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          {gameId && playerId && (
+            <div>
+              <p>Game ID: {gameId}</p>
+              <p>Player ID: {playerId}</p>
+            </div>
+          )}
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+          {!error && <p>No errors</p>}
+        </>
       )}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 };

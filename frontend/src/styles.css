@@ -58,3 +58,13 @@ h2 {
   align-items: center;
   margin-bottom: 20px;
 }
+
+.loading-indicator {
+  font-size: 16px;
+  color: #007bff;
+}
+
+.no-errors-message {
+  font-size: 14px;
+  color: #28a745;
+}
