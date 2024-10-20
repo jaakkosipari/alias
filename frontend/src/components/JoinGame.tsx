@@ -26,7 +26,7 @@ const JoinGame: React.FC<JoinGameProps> = ({ onJoinGame }) => {
       const data = await response.json();
       setPlayerId(data.playerId);
       onJoinGame(data.gameId, data.playerId);
-    } catch (error) {
+    } catch (error: any) {
       setError(error.message);
     }
   };

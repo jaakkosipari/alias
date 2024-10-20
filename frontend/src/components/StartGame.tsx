@@ -26,7 +26,7 @@ const StartGame: React.FC<StartGameProps> = ({ onStartGame }) => {
       setGameId(data.gameId);
       setPlayerId(data.playerId);
       onStartGame(data.gameId, data.playerId);
-    } catch (error) {
+    } catch (error: any) {
       setError(error.message);
     }
   };
