@@ -11,6 +11,7 @@ const JoinGame: React.FC<JoinGameProps> = ({ onJoinGame }) => {
 
   const handleJoinGame = async () => {
     try {
+      console.log(`Joining game with gameId: ${gameId}`);
       const response = await fetch('http://localhost:3001/join', {
         method: 'POST',
         headers: {

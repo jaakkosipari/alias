@@ -14,6 +14,7 @@ const Game: React.FC<GameProps> = ({ gameId, playerId, onScoreUpdate }) => {
   useEffect(() => {
     // Fetch a new word from the backend
     const fetchWord = async () => {
+      console.log(`Fetching word for gameId: ${gameId}`);
       const response = await fetch(`http://localhost:3001/api/game/${gameId}/word`);
       const data = await response.json();
       setWord(data.word);
@@ -23,6 +24,7 @@ const Game: React.FC<GameProps> = ({ gameId, playerId, onScoreUpdate }) => {
   }, [gameId]);
 
   const handleGuessSubmit = async () => {
+    console.log(`Submitting guess for gameId: ${gameId}, playerId: ${playerId}`);
     const response = await fetch(`http://localhost:3001/api/game/${gameId}/guess`, {
       method: 'POST',
       headers: {
