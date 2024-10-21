@@ -13,6 +13,7 @@ const Game: React.FC<GameProps> = ({ gameId, playerId, onScoreUpdate, isGuesser 
   return (
     <div className="game-container">
       <h2>Game</h2>
+      <h3>Game ID: {gameId}</h3>
       {isGuesser ? (
         <GuessWord gameId={gameId} playerId={playerId} onScoreUpdate={onScoreUpdate} />
       ) : (
