@@ -8,7 +8,7 @@ const Score: React.FC<ScoreProps> = ({ score }) => {
   return (
     <div className="score-container">
       <h2>Score</h2>
-      <p>{score}</p>
+      <p className="score-value">{score}</p>
     </div>
   );
 };

@@ -10,10 +10,12 @@ const GuessWord: React.FC<GuessWordProps> = ({ gameId, playerId, onScoreUpdate }
   const [guess, setGuess] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
 
   const handleGuessSubmit = async () => {
     setLoading(true);
     setError('');
+    setMessage('');
     try {
       const response = await fetch(`http://localhost:3001/guess`, {
         method: 'POST',
@@ -27,6 +29,9 @@ const GuessWord: React.FC<GuessWordProps> = ({ gameId, playerId, onScoreUpdate }
 
       if (data.correct) {
         onScoreUpdate(data.score);
+        setMessage('Correct guess!');
+      } else {
+        setMessage('Incorrect guess.');
       }
 
       setGuess('');
@@ -50,6 +55,7 @@ const GuessWord: React.FC<GuessWordProps> = ({ gameId, playerId, onScoreUpdate }
       <button onClick={handleGuessSubmit} className="button">Submit Guess</button>
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
+      {message && <p>{message}</p>}
     </div>
   );
 };
