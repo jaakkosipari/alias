@@ -61,7 +61,7 @@ app.get('/api/game/:gameId/word', (req: Request, res: Response): void => {
     return;
   }
   const randomWord = wordlist.words[Math.floor(Math.random() * wordlist.words.length)];
-  game.words.push(randomWord);
+  game.currentWord = randomWord;
   logGameInfo(gameId, '', 0, `Word fetched: ${randomWord}`);
   res.json({ word: randomWord });
 });

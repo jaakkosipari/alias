@@ -1,8 +1,7 @@
 type Game = {
   id: string;
   players: string[];
-  words: string[];
-  currentWordIndex: number;
+  currentWord: string | null;
   scores: { [playerId: string]: number };
 };
 
@@ -12,8 +11,7 @@ export const createGame = (gameId: string, playerId: string) => {
   games[gameId] = {
     id: gameId,
     players: [playerId],
-    words: [],
-    currentWordIndex: 0,
+    currentWord: null,
     scores: { [playerId]: 0 },
   };
 };
@@ -42,10 +40,10 @@ export const submitGuess = (
     return { error: 'Game not found' };
   }
 
-  const currentWord = game.words[game.currentWordIndex];
-  if (guess.toLowerCase() === currentWord.toLowerCase()) {
+  const currentWord = game.currentWord;
+  if (currentWord && guess.toLowerCase() === currentWord.toLowerCase()) {
     game.scores[playerId]++;
-    game.currentWordIndex++;
+    game.currentWord = null;
     return { correct: true, score: game.scores[playerId] };
   }
 
