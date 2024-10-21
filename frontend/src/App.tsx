@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import StartGame from './components/StartGame';
 import JoinGame from './components/JoinGame';
-import DisplayWord from './components/DisplayWord';
-import GuessWord from './components/GuessWord';
+import Game from './components/Game';
 import Score from './components/Score';
 import './styles.css';
 
@@ -38,11 +37,7 @@ const App: React.FC = () => {
       )}
       {gameId && playerId && (
         <>
-          {isGuesser ? (
-            <GuessWord gameId={gameId} playerId={playerId} onScoreUpdate={handleScoreUpdate} />
-          ) : (
-            <DisplayWord gameId={gameId} />
-          )}
+          <Game gameId={gameId} playerId={playerId} onScoreUpdate={handleScoreUpdate} isGuesser={isGuesser} />
           <Score score={score} />
         </>
       )}
