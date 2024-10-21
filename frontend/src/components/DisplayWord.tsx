@@ -9,21 +9,21 @@ const DisplayWord: React.FC<DisplayWordProps> = ({ gameId }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
-  useEffect(() => {
-    const fetchWord = async () => {
-      setLoading(true);
-      setError('');
-      try {
-        const response = await fetch(`http://localhost:3001/api/game/${gameId}/word`);
-        const data = await response.json();
-        setWord(data.word);
-      } catch (error: any) {
-        setError('Failed to fetch word');
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchWord = async () => {
+    setLoading(true);
+    setError('');
+    try {
+      const response = await fetch(`http://localhost:3001/api/game/${gameId}/word`);
+      const data = await response.json();
+      setWord(data.word);
+    } catch (error: any) {
+      setError('Failed to fetch word');
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchWord();
   }, [gameId]);
 

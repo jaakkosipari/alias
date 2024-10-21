@@ -68,3 +68,18 @@ h2 {
   font-size: 14px;
   color: #28a745;
 }
+
+/* Pb8ca */
+.score-container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.score-value {
+  font-size: 48px;
+  font-weight: bold;
+  color: #007bff;
+}
