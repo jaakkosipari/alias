@@ -1,3 +1,5 @@
+import { wordlist } from './wordlist';
+
 type Game = {
   id: string;
   players: string[];
