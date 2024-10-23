@@ -6,34 +6,30 @@ interface DisplayWordProps {
 
 const DisplayWord: React.FC<DisplayWordProps> = ({ gameId }) => {
   const [word, setWord] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
   const fetchWord = async () => {
-    setLoading(true);
     setError('');
     try {
       const response = await fetch(`http://localhost:3001/api/game/${gameId}/word`);
       const data = await response.json();
-      setWord(data.word);
+      if (data.word !== word) {
+        setWord(data.word);
+      }
     } catch (error: any) {
       setError('Failed to fetch word');
-    } finally {
-      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchWord();
-    const intervalId = setInterval(fetchWord, 2000);
-    return () => clearInterval(intervalId);
+    const interval = setInterval(fetchWord, 2000);
+    return () => clearInterval(interval);
   }, [gameId]);
 
   return (
     <div className="display-word-container">
-      {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
+      {error ? (
         <p style={{ color: 'red' }}>{error}</p>
       ) : (
         <p>{word}</p>
