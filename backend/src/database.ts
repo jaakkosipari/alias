@@ -43,7 +43,8 @@ export const submitGuess = (
   const currentWord = game.currentWord;
   if (currentWord && guess.toLowerCase() === currentWord.toLowerCase()) {
     game.scores[playerId]++;
-    game.currentWord = null;
+    const randomWord = wordlist.words[Math.floor(Math.random() * wordlist.words.length)];
+    game.currentWord = randomWord;
     return { correct: true, score: game.scores[playerId] };
   }
 
