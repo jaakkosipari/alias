@@ -25,6 +25,8 @@ const DisplayWord: React.FC<DisplayWordProps> = ({ gameId }) => {
 
   useEffect(() => {
     fetchWord();
+    const intervalId = setInterval(fetchWord, 2000);
+    return () => clearInterval(intervalId);
   }, [gameId]);
 
   return (
