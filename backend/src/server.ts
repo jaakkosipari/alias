@@ -62,8 +62,9 @@ app.get('/api/game/:gameId/word', (req: Request, res: Response): void => {
     return;
   }
   const currentWord = game.currentWord;
-  logGameInfo(gameId, '', 0, `Current word: ${currentWord}`);
-  res.json({ word: currentWord });
+  const score = game.scores;
+  logGameInfo(gameId, '', 0, `Current word: ${currentWord}, Score: ${score}`);
+  res.json({ word: currentWord, score });
 });
 
 app.listen(port, () => {

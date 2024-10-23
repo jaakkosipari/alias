@@ -6,9 +6,10 @@ interface DisplayWordProps {
 
 const DisplayWord: React.FC<DisplayWordProps> = ({ gameId }) => {
   const [word, setWord] = useState<string>('');
+  const [score, setScore] = useState<number>(0);
   const [error, setError] = useState<string>('');
 
-  const fetchWord = async () => {
+  const fetchWordAndScore = async () => {
     setError('');
     try {
       const response = await fetch(`http://localhost:3001/api/game/${gameId}/word`);
@@ -16,14 +17,17 @@ const DisplayWord: React.FC<DisplayWordProps> = ({ gameId }) => {
       if (data.word !== word) {
         setWord(data.word);
       }
+      if (data.score !== score) {
+        setScore(data.score);
+      }
     } catch (error: any) {
-      setError('Failed to fetch word');
+      setError('Failed to fetch word and score');
     }
   };
 
   useEffect(() => {
-    fetchWord();
-    const interval = setInterval(fetchWord, 2000);
+    fetchWordAndScore();
+    const interval = setInterval(fetchWordAndScore, 2000);
     return () => clearInterval(interval);
   }, [gameId]);
 
@@ -32,7 +36,10 @@ const DisplayWord: React.FC<DisplayWordProps> = ({ gameId }) => {
       {error ? (
         <p style={{ color: 'red' }}>{error}</p>
       ) : (
-        <p>{word}</p>
+        <>
+          <p>{word}</p>
+          <p>Score: {score}</p>
+        </>
       )}
     </div>
   );
