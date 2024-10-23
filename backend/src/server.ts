@@ -60,10 +60,9 @@ app.get('/api/game/:gameId/word', (req: Request, res: Response): void => {
     res.status(404).json({ error: 'Game not found' });
     return;
   }
-  const randomWord = wordlist.words[Math.floor(Math.random() * wordlist.words.length)];
-  game.currentWord = randomWord;
-  logGameInfo(gameId, '', 0, `Word fetched: ${randomWord}`);
-  res.json({ word: randomWord });
+  const currentWord = game.currentWord;
+  logGameInfo(gameId, '', 0, `Current word: ${currentWord}`);
+  res.json({ word: currentWord });
 });
 
 app.listen(port, () => {
