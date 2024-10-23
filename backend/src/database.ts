@@ -10,10 +10,11 @@ type Game = {
 const games: { [gameId: string]: Game } = {};
 
 export const createGame = (gameId: string, playerId: string) => {
+  const randomWord = wordlist.words[Math.floor(Math.random() * wordlist.words.length)];
   games[gameId] = {
     id: gameId,
     players: [playerId],
-    currentWord: null,
+    currentWord: randomWord,
     scores: { [playerId]: 0 },
   };
 };
@@ -49,6 +50,9 @@ export const submitGuess = (
     game.currentWord = randomWord;
     return { correct: true, score: game.scores[playerId] };
   }
+
+  const randomWord = wordlist.words[Math.floor(Math.random() * wordlist.words.length)];
+  game.currentWord = randomWord;
 
   return { correct: false, score: game.scores[playerId] };
 };
