@@ -19,7 +19,7 @@ app.post('/start', (req: Request, res: Response) => {
   const gameId = uuidv4();
   const playerId = uuidv4();
   const randomWord = wordlist.words[Math.floor(Math.random() * wordlist.words.length)];
-  createGame(gameId, playerId, randomWord);
+  createGame(gameId, playerId);
   const game = getGame(gameId);
   const score = game ? game.scores[playerId] : 0;
   logGameInfo(gameId, playerId, score, 'Game started');
