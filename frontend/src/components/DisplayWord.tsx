@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ErrorBoundary from './ErrorBoundary';
 
 interface DisplayWordProps {
   gameId: string;
@@ -32,16 +33,18 @@ const DisplayWord: React.FC<DisplayWordProps> = ({ gameId }) => {
   }, [gameId]);
 
   return (
-    <div className="display-word-container">
-      {error ? (
-        <p style={{ color: 'red' }}>{error}</p>
-      ) : (
-        <>
-          <p>{word}</p>
-          <p>Score: {score}</p>
-        </>
-      )}
-    </div>
+    <ErrorBoundary>
+      <div className="display-word-container">
+        {error ? (
+          <p style={{ color: 'red' }}>{error}</p>
+        ) : (
+          <>
+            <p>{word}</p>
+            <p>Score: {score}</p>
+          </>
+        )}
+      </div>
+    </ErrorBoundary>
   );
 };
 
