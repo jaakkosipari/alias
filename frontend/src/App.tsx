@@ -4,7 +4,7 @@ import JoinGame from './components/JoinGame';
 import Game from './components/Game';
 import Score from './components/Score';
 import './styles.css';
-import ErrorBoundary from './components/ErrorBoundary'; // P5c18
+import ErrorBoundary from './components/ErrorBoundary';
 
 const App: React.FC = () => {
   const [gameId, setGameId] = useState<string | null>(null);
@@ -29,7 +29,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <ErrorBoundary> {/* P8549 */}
+    <ErrorBoundary>
       <div className="main-container">
         {!gameId && !playerId && (
           <>
@@ -44,7 +44,7 @@ const App: React.FC = () => {
           </>
         )}
       </div>
-    </ErrorBoundary> {/* P8549 */}
+    </ErrorBoundary>
   );
 };
 
