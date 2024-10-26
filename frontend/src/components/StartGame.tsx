@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import DisplayWord from './DisplayWord';
 
 interface StartGameProps {
-  onStartGame: (gameId: string, playerId: string) => void;
+  onStartGame: (gameId: string, playerId: string, score: number) => void;
 }
 
 const StartGame: React.FC<StartGameProps> = ({ onStartGame }) => {
   const [gameId, setGameId] = useState<string>('');
   const [playerId, setPlayerId] = useState<string>('');
+  const [score, setScore] = useState<number>(0);
   const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -30,7 +31,8 @@ const StartGame: React.FC<StartGameProps> = ({ onStartGame }) => {
       const data = await response.json();
       setGameId(data.gameId);
       setPlayerId(data.playerId);
-      onStartGame(data.gameId, data.playerId);
+      setScore(data.score);
+      onStartGame(data.gameId, data.playerId, data.score);
     } catch (error: any) {
       setError(error.message);
     } finally {
@@ -50,6 +52,7 @@ const StartGame: React.FC<StartGameProps> = ({ onStartGame }) => {
             <div>
               <p>Game ID: {gameId}</p>
               <p>Player ID: {playerId}</p>
+              <p>Score: {score}</p>
               <DisplayWord gameId={gameId} />
             </div>
           )}

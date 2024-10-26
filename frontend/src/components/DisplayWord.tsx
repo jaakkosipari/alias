@@ -3,9 +3,10 @@ import ErrorBoundary from './ErrorBoundary';
 
 interface DisplayWordProps {
   gameId: string;
+  onScoreUpdate: (score: number) => void;
 }
 
-const DisplayWord: React.FC<DisplayWordProps> = ({ gameId }) => {
+const DisplayWord: React.FC<DisplayWordProps> = ({ gameId, onScoreUpdate }) => {
   const [word, setWord] = useState<string>('');
   const [score, setScore] = useState<number>(0);
   const [error, setError] = useState<string>('');
@@ -20,6 +21,7 @@ const DisplayWord: React.FC<DisplayWordProps> = ({ gameId }) => {
       }
       if (data.score !== score) {
         setScore(data.score);
+        onScoreUpdate(data.score);
       }
     } catch (error: any) {
       setError('Failed to fetch word and score');

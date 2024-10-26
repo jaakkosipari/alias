@@ -23,7 +23,7 @@ app.post('/start', (req: Request, res: Response) => {
   const game = getGame(gameId);
   const score = game ? game.scores[playerId] : 0;
   logGameInfo(gameId, playerId, score, 'Game started');
-  res.json({ gameId, playerId });
+  res.json({ gameId, playerId, score });
 });
 
 app.post('/join', (req: Request, res: Response) => {
