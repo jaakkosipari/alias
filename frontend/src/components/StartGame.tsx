@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import DisplayWord from './DisplayWord';
+import { BACKEND_HOST } from '../config';
 
 interface StartGameProps {
   onStartGame: (gameId: string, playerId: string, score: number) => void;
@@ -17,7 +18,7 @@ const StartGame: React.FC<StartGameProps> = ({ onStartGame }) => {
     setError('');
     try {
       console.log('Sending request to start a new game');
-      const response = await fetch('http://localhost:3001/start', {
+      const response = await fetch(`${BACKEND_HOST}/start`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
