@@ -67,6 +67,11 @@ app.get('/api/game/:gameId/word', (req: Request, res: Response): void => {
   res.json({ word: currentWord, score });
 });
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ErrorBoundary from './ErrorBoundary';
+import { BACKEND_HOST } from '../config';
 
 interface DisplayWordProps {
   gameId: string;
@@ -14,7 +15,7 @@ const DisplayWord: React.FC<DisplayWordProps> = ({ gameId, onScoreUpdate }) => {
   const fetchWordAndScore = async () => {
     setError('');
     try {
-      const response = await fetch(`http://localhost:3001/api/game/${gameId}/word`);
+      const response = await fetch(`${BACKEND_HOST}/api/game/${gameId}/word`);
       const data = await response.json();
       if (data.word !== word) {
         setWord(data.word);

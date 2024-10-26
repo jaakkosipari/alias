@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BACKEND_HOST } from '../config';
 
 interface GuessWordProps {
   gameId: string;
@@ -17,7 +18,7 @@ const GuessWord: React.FC<GuessWordProps> = ({ gameId, playerId, onScoreUpdate }
     setError('');
     setMessage('');
     try {
-      const response = await fetch(`http://localhost:3001/guess`, {
+      const response = await fetch(`${BACKEND_HOST}/guess`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

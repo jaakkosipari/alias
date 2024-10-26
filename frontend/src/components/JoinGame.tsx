@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import GuessWord from './GuessWord';
+import { BACKEND_HOST } from '../config';
 
 interface JoinGameProps {
   onJoinGame: (gameId: string, playerId: string) => void;
@@ -17,7 +18,7 @@ const JoinGame: React.FC<JoinGameProps> = ({ onJoinGame }) => {
     setError('');
     try {
       console.log(`Joining game with gameId: ${gameId}`);
-      const response = await fetch('http://localhost:3001/join', {
+      const response = await fetch(`${BACKEND_HOST}/join`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
