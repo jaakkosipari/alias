@@ -19,7 +19,7 @@ const Game: React.FC<GameProps> = ({ gameId, playerId, onScoreUpdate, isGuesser 
         {isGuesser ? (
           <GuessWord gameId={gameId} playerId={playerId} onScoreUpdate={onScoreUpdate} />
         ) : (
-          <DisplayWord gameId={gameId} />
+          <DisplayWord gameId={gameId} onScoreUpdate={onScoreUpdate} />
         )}
       </div>
     </ErrorBoundary>

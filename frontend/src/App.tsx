@@ -12,9 +12,10 @@ const App: React.FC = () => {
   const [score, setScore] = useState<number>(0);
   const [isGuesser, setIsGuesser] = useState<boolean>(false);
 
-  const handleStartGame = (newGameId: string, newPlayerId: string) => {
+  const handleStartGame = (newGameId: string, newPlayerId: string, newScore: number) => {
     setGameId(newGameId);
     setPlayerId(newPlayerId);
+    setScore(newScore);
     setIsGuesser(false);
   };
 
